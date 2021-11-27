@@ -1,8 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-router.get('/', function(req, res, next) {
-  res.send('test')
-});
+const searchMovie = require('./scripts/naverSearch')
 
-module.exports = router;
+router.get('/search', function (req, res, next) {
+    searchMovie(req.query.movieName, (error, response, body) => {
+        if (response.statusCode === 200) {
+            res.send(body)
+        }
+    })
+})
+
+module.exports = router
