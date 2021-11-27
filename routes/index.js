@@ -3,12 +3,12 @@ const router = express.Router()
 
 const searchMovie = require('./scripts/naverSearch')
 
-router.get('/search', function (req, res, next) {
-    searchMovie(req.query.movieName, (error, response, body) => {
-        if (response.statusCode === 200) {
-            res.send(body)
-        }
-    })
+const searchRouter = require('./search')
+
+router.get('/', function (req, res, next) {
+    res.send(__dirname + '/public/index.html')
 })
+
+router.use('/search', searchRouter)
 
 module.exports = router
