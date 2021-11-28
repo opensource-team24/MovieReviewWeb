@@ -23,6 +23,8 @@ Reviews are stored and retrieved by using a firebase realtime database.
 
 [![](http://img.youtube.com/vi/kCnEfXOkq-E/0.jpg)](https://www.youtube.com/embed/kCnEfXOkq-E)
 
+Click on the image to go to YouTube.
+
 ## How to run
 
 First, you should download the project.
