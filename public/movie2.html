@@ -9,27 +9,39 @@
                 padding: 20px;
                 border: 0px;
                 outline: none;
-                float: left;
             }
 
             .button {
                 width: 50px;
                 height: 100%;
                 border: 0px;
-                background: white;
                 outline: none;
-                float: right;
                 color: black;
+            }
+            
+            .img {
+                width: 200px;
+                height: 300px;
+                margin-right: 10px;
+                float: left;
             }
         </style>
     </head>
     <body>
-        <div style="background:white; float:left; margin-right:10px;">
-            <h1>Movie</h1>
+        <div>
+            <h1 style="margin-right: 20px; float: left;">Movie</h1>
+            <div style="height: 80px; width: 400px;">
+                <input type="text">
+                <button onclick=" location.href='movie2.html' ">Search</button>
+            </div>
         </div>
-        <div style="height:80px; width:400px; background:white; float:left; margin-top:30px;">
-            <input type="text">
-            <button>Search</button>
+        <div style="margin-top: 20px;">
+            <img src="Frozen.jfif" onclick=" location.href='movie3.html' ">
+            <div>
+                <h4>Frozen (2013)</h4>
+                <h4>Kristen Bell, Idina Menzel</h4>
+                <h5>☆ 4.6</h5>
+            </div>
         </div>
     </body>
 </html>
