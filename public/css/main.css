@@ -34,6 +34,11 @@ img {
   height: 400px;
 }
 
+#movie-image {
+  width: 150px;
+  height: 250px;
+}
+
 .search-result-list {
   display: flex;
   justify-content: space-between;
