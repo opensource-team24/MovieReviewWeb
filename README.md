@@ -21,7 +21,7 @@ Reviews are stored and retrieved by using a firebase realtime database.
 
 ## Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kCnEfXOkq-E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/kCnEfXOkq-E/0.jpg)](https://www.youtube.com/embed/kCnEfXOkq-E)
 
 ## How to run
 
