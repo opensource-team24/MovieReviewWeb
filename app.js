@@ -1,12 +1,18 @@
 const express = require('express')
 const path = require('path')
 const logger = require('morgan')
+const nunjucks = require('nunjucks')
 
 const indexRouter = require('./routes/index')
 
 const app = express()
 
 const port = 3000;
+
+nunjucks.configure('public', {
+    autoescape: true,
+    express: app
+})
 
 app.set('views', path.join(__dirname, 'views'))
 

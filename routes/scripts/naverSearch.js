@@ -18,7 +18,8 @@ searchMovie = (movieName, responseCallback) => {
             'X-Naver-Client-Secret': clientSecret
         },
         qs: {
-            'query': movieName
+            'query': movieName,
+            'display': 5
         }
     }
     

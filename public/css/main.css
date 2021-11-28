@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  font-size: 20px;
+  width: 300px;
+  outline: none;
+}
+
+button {
+  width: 100px;
+  padding: 8px;
+  border: 0px;
+  outline: none;
+  color: black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: grey;
+}
+
+img {
+  width: 200px;
+  height: 300px;
+  margin-right: 10px;
+}
+
+.search-result-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-result-item {
+  cursor: pointer;
+}
+
+.search-result-item:hover {
+  background-color: lightgrey;
+}
