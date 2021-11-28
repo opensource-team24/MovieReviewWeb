@@ -15,7 +15,13 @@ You can click on one of these to view the movie's details and reviews like foolw
 
 ![](.README_images/search-result.png)
 
+Information such as posters and movie titles are fetched by using the Naver search API.
+
+Reviews are stored and retrieved by using a firebase realtime database.
+
 ## Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kCnEfXOkq-E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## How to run
 
