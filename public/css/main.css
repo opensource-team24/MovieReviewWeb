@@ -48,6 +48,11 @@ img {
   background-color: lightgrey;
 }
 
+.review-item {
+  width: 500px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+}
+
 .invisible {
   display: none;
 }

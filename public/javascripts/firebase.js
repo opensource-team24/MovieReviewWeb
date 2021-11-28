@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js'
-import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js'
+import { getDatabase, ref, set, get, child, onValue } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js'
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCOZ75JeeBShX9novowym6CL-FUFiM6e0Q',
@@ -21,12 +21,10 @@ export function writeReview(movieName, movieReleaseYear, username, content) {
     })
 }
 
-export function readReviews(movieName, movieReleaseYear) {
-    get(child(ref(database), `review/${movieName}-${movieReleaseYear}`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            return snapshot
-        } else {
-            return null
-        }
+export function addChangeDataEventListener(movieName, movieRelaseYear, callback) {
+    const reviewRef = ref(database, `review/${movieName}-${movieRelaseYear}`)
+    
+    onValue(reviewRef, (snapshot) => {
+        callback(snapshot.val())
     })
 }

@@ -1,4 +1,4 @@
-import { writeReview } from './firebase.js'
+import { addChangeDataEventListener, writeReview } from './firebase.js'
 
 function searchMovie(movieName, callback) {
     fetch(`/search?movieName=${movieName}`).then(data => data.text()).then(callback)
@@ -23,6 +23,8 @@ window.onload = () => {
     const movieRatingEl = document.querySelector('#movie-rating')
     const movieImageEl = document.querySelector('#movie-image')
     
+    const reviewListEl = document.querySelector('#review-list')
+    
     let selectedMovieData
     
     movieSearchBtnEl.addEventListener('click', () => {
@@ -35,8 +37,7 @@ window.onload = () => {
     
             for (let key in resultJson.items) {
                 const movieData = resultJson.items[key]
-                const listEl = document.createElement('li')
-                const itemEl = document.createElement('div')
+                const itemEl = document.createElement('li')
                 const imgEl = document.createElement('img')
                 const titleEl = document.createElement('h4')
                 const scoreEl = document.createElement('h5')
@@ -47,8 +48,7 @@ window.onload = () => {
                 titleEl.innerText = movieData.title + '(' + movieData.pubDate + ')'
                 scoreEl.innerText = 'Rating: ' + movieData.userRating
                 
-                movieSearchResultListEl.appendChild(listEl)
-                listEl.appendChild(itemEl)
+                movieSearchResultListEl.appendChild(itemEl)
                 itemEl.appendChild(imgEl)
                 itemEl.appendChild(titleEl)
                 itemEl.appendChild(scoreEl)
@@ -59,12 +59,30 @@ window.onload = () => {
                     movieTitleEl.innerText = movieData.title
                     movieSupervisorEl.innerText = 'Director: ' + movieData.director
                     movieActorEl.innerText = 'Actor: ' + movieData.actor
-                    moviePubDateEl.innerText = 'Release Date: ' + movieData.pubDate
+                    moviePubDateEl.innerText = 'Release Year: ' + movieData.pubDate
                     movieRatingEl.innerText = 'Rating: ' + movieData.userRating
                     movieImageEl.src = movieData.image
     
                     searchContainerEl.classList.add('invisible')
                     resultContainerEl.classList.remove('invisible')
+                    
+                    addChangeDataEventListener(movieData.title, movieData.pubDate, (data) => {
+                        for (let key in data) {
+                            const reviewData = data[key]
+                            const itemEl = document.createElement('li')
+                            const usernameEl = document.createElement('h5')
+                            const contentEl = document.createElement('p')
+    
+                            itemEl.classList.add('review-item')
+    
+                            usernameEl.innerText = reviewData.username
+                            contentEl.innerText = reviewData.content
+    
+                            reviewListEl.appendChild(itemEl)
+                            itemEl.appendChild(usernameEl)
+                            itemEl.appendChild(contentEl)
+                        }
+                    })
                 })
             }
         })
