@@ -1,17 +1,33 @@
+import { writeReview } from './firebase.js'
+
 function searchMovie(movieName, callback) {
     fetch(`/search?movieName=${movieName}`).then(data => data.text()).then(callback)
 }
 
 window.onload = () => {
+    const searchContainerEl = document.querySelector('.search-container')
+    const resultContainerEl = document.querySelector('.result-container')
+    
     const movieNameInputEl = document.querySelector('#movie-name-input')
     const movieSearchResultListEl = document.querySelector('#search-result')
     const movieSearchBtnEl = document.querySelector('#search-btn')
     
-    movieSearchBtnEl.addEventListener('click', () => {
-        console.log(searchMovie(movieNameInputEl.value, (data) => {
-            const resultJson = JSON.parse(data)
+    const usernameInputEl = document.querySelector('#username-input')
+    const reviewInputEl = document.querySelector('#review-input')
+    const reviewSaveBtnEl = document.querySelector('#review-save-btn')
     
-            console.log(data)
+    const movieTitleEl = document.querySelector('#movie-title')
+    const movieSupervisorEl = document.querySelector('#movie-supervisor')
+    const movieActorEl = document.querySelector('#movie-actor')
+    const moviePubDateEl = document.querySelector('#movie-pub-date')
+    const movieRatingEl = document.querySelector('#movie-rating')
+    const movieImageEl = document.querySelector('#movie-image')
+    
+    let selectedMovieData
+    
+    movieSearchBtnEl.addEventListener('click', () => {
+        searchMovie(movieNameInputEl.value, (data) => {
+            const resultJson = JSON.parse(data)
     
             while (movieSearchResultListEl.hasChildNodes()) {
                 movieSearchResultListEl.removeChild(movieSearchResultListEl.firstChild)
@@ -28,8 +44,8 @@ window.onload = () => {
                 itemEl.classList.add('search-result-item')
                 
                 imgEl.src = movieData.image
-                titleEl.innerText = movieData.title
-                scoreEl.innerText = movieData.userRating + '점'
+                titleEl.innerText = movieData.title + '(' + movieData.pubDate + ')'
+                scoreEl.innerText = 'Rating: ' + movieData.userRating
                 
                 movieSearchResultListEl.appendChild(listEl)
                 listEl.appendChild(itemEl)
@@ -38,10 +54,29 @@ window.onload = () => {
                 itemEl.appendChild(scoreEl)
                 
                 itemEl.addEventListener('click', () => {
-                    location.href = `/result?movieName=${movieData.title}`
+                    selectedMovieData = movieData
+                    
+                    movieTitleEl.innerText = movieData.title
+                    movieSupervisorEl.innerText = 'Director: ' + movieData.director
+                    movieActorEl.innerText = 'Actor: ' + movieData.actor
+                    moviePubDateEl.innerText = 'Release Date: ' + movieData.pubDate
+                    movieRatingEl.innerText = 'Rating: ' + movieData.userRating
+                    movieImageEl.src = movieData.image
+    
+                    searchContainerEl.classList.add('invisible')
+                    resultContainerEl.classList.remove('invisible')
                 })
             }
-        }))
+        })
     })
     
+    reviewSaveBtnEl.addEventListener('click', () => {
+        const username = usernameInputEl.value
+        const content = reviewInputEl.value
+    
+        usernameInputEl.value = ""
+        reviewInputEl.value = ""
+        
+        writeReview(selectedMovieData.title, selectedMovieData.pubDate, username, content)
+    })
 }

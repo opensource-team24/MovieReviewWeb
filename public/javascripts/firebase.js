@@ -14,10 +14,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
 
-export function writeReview(movieName, movieReleaseYear, username, score, content) {
+export function writeReview(movieName, movieReleaseYear, username, content) {
     set(ref(database, `review/${movieName}-${movieReleaseYear}/${username}`), {
         username: username,
-        score: score,
         content: content
     })
 }

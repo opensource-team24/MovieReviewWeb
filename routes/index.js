@@ -9,12 +9,6 @@ router.get('/', function (req, res, next) {
     res.render('movieSearch.html')
 })
 
-router.get('/result', function (req, res, next) {
-    console.log(req.query.movieName)
-    
-    res.render('movieDetail.html')
-})
-
 router.use('/search', searchRouter)
 
 module.exports = router

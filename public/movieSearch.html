@@ -8,22 +8,33 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div>
-        <h1>Movie</h1>
+    <div class="search-container">
         <div>
-            <input id="movie-name-input" type="text">
-            <button id="search-btn">Search</button>
-        </div>
-    </div>
-    <ul id="search-result" class="search-result-list">
-        <li>
-            <div class="search-result-item">
-                <img src="Frozen.jfif">
-                <h4>Frozen (2013)</h4>
-                <h5>4.6점</h5>
+            <h1>Movie</h1>
+            <div>
+                <input id="movie-name-input" type="text">
+                <button id="search-btn">Search</button>
             </div>
-        </li>
-    </ul>
-    <script src="javascripts/movieSearch.js"></script>
+        </div>
+        <ul id="search-result" class="search-result-list">
+        </ul>
+    </div>
+    <div class="result-container invisible">
+        <div>
+            <img id="movie-image" src="">
+            <div>
+                <h4 id="movie-title">title</h4>
+                <h4 id="movie-supervisor">Supervisor</h4>
+                <h4 id="movie-actor">Actor : Kristen Bell, Idina Menzel</h4>
+                <h4 id="movie-pub-date">Release Year : 2013</h4>
+                <h5 id="movie-rating">4.6점</h5>
+            </div>
+        </div>
+        <textarea placeholder="username" id="username-input" rows="1" cols="50"></textarea>
+        <textarea placeholder="Write review..." id="review-input" rows="10" cols="50"></textarea>
+        <button id="review-save-btn">Save</button>
+    </div>
+    <script type="module" src="javascripts/firebase.js"></script>
+    <script type="module" src="javascripts/movieSearch.js"></script>
 </body>
 </html>

@@ -21,6 +21,10 @@ button {
   cursor: pointer;
 }
 
+textarea {
+  display: block;
+}
+
 button:hover {
   background-color: grey;
 }
@@ -42,4 +46,8 @@ img {
 
 .search-result-item:hover {
   background-color: lightgrey;
+}
+
+.invisible {
+  display: none;
 }
