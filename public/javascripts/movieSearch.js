@@ -67,6 +67,10 @@ window.onload = () => {
                     resultContainerEl.classList.remove('invisible')
                     
                     addChangeDataEventListener(movieData.title, movieData.pubDate, (data) => {
+                        while (reviewListEl.hasChildNodes()) {
+                            reviewListEl.removeChild(reviewListEl.firstChild)
+                        }
+                        
                         for (let key in data) {
                             const reviewData = data[key]
                             const itemEl = document.createElement('li')
