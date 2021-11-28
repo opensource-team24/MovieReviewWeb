@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Movie Information</title>
+        <style>
+            .input.search {
+                font-size: 20px;
+                width: 300px;
+                padding: 20px;
+                border: 0px;
+                outline: none;
+            }
+
+            .rating.radio {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                background-color: white;
+                cursor: pointer;
+            }
+
+            .rating.radio + label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                background-image: url('./star.png');
+                cursor: pointer;
+                background-color: white;
+            }
+
+            .rating.radio:checked + label {
+                background-color: yellow;
+            }
+
+            .button {
+                width: 50px;
+                height: 100%;
+                border: 0px;
+                outline: none;
+                color: black;
+            }
+
+            .img {
+                width: 200px;
+                height: 300px;
+                margin-right: 10px;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1 style="margin-right: 20px; float: left;">Movie</h1>
+            <div style="height: 80px; width: 400px;">
+                <input type="text" class="search">
+                <button onclick=" location.href='movie2.html' ">Search</button>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <img src="Frozen.jfif">
+            <div>
+                <h4>Frozen</h4>
+                <h4>Supervisor : Chris Buck, Jennifer Lee</h4>
+                <h4>Actor : Kristen Bell, Idina Menzel</h4>
+                <h4>Release Year : 2013</h4>
+                <h5>☆ 4.6</h5>
+            </div>
+        </div>
+        <form style="margin-top: 50px;">
+            <div class="rating">
+                <input type="checkbox" name="rating" id="star1" value="1" class="radio" title="score 1">
+                <label for="star1"></label>
+                <input type="checkbox" name="rating" id="star2" value="2" class="radio" title="score 2">
+                <label for="star2"></label>
+                <input type="checkbox" name="rating" id="star3" value="3" class="radio" title="score 3">
+                <label for="star3"></label>
+                <input type="checkbox" name="rating" id="star4" value="4" class="radio" title="score 4">
+                <label for="star4"></label>
+                <input type="checkbox" name="rating" id="star5" value="5" class="radio" title="score 5">
+                <label for="star5"></label>
+            </div>
+            <p><textarea placeholder="Write review..." name="txt" id="txt" rows="10" cols="50"></textarea></p>
+            <p><input type="submit" name="save" id="save" value="Comment"></p>
+        </form>
+        <script>
+            function Rating() {};
+
+            Rating.prototype.rate = 0;
+
+            Rating.prototype.setRate = function(newrate) {
+                this.rate = newrate;
+                let items = document.querySelectorAll('.radio');
+                items.forEach(function(item, idx)  {
+                    if (idx < newrate) {
+                        item.checked = true;
+                    }
+
+                    else {
+                        item.checked = false;
+                    }
+                });
+            }
+
+            let rate = new Rating();
+
+            document.addEventListener('DOMContentLoaded', function() {
+                let clicked = document.querySelector('.rating');
+                clicked.addEventListener('click', function(e) {
+                    let elem = e.target;
+
+                    if (elem.classList.contains('.radio')) {
+                        rate.setRate(parseInt(elem.value));
+                    }
+                })
+            });
+
+            document.querySelector('#txt').addEventListener('keydown', function() {
+                let review = document.querySelector('#txt');
+                let lengthCheckEx = /^.{400,}$/;
+
+                if (lengthCheckEx.test(review.value)) {
+                    review.value = review.value.substr(0, 400);
+                }
+            });
+
+            document.querySelector('#save').addEventListener('click', function(e) {
+                if (rating.rate == 0) {
+                    rating.showMessage('rate');
+                    return false;
+                }
+
+                if (document.querySelector('#txt').value.length < 5) {
+                    rating.showMessage('review');
+                    return false;
+                }
+            });
+
+            Rating.prototype.showMessage = function(type) {
+                switch (type) {
+                    case 'rate':
+
+                    case 'review':
+                }
+            }
+        </script>
+    </body>
+</html>
